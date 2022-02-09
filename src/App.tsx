@@ -10,9 +10,16 @@ function App() {
   useEffect(() => {
     (async () => {
       const data = await fetchData()
+      console.log(data)
       setData(data)
     })
   }, [])
+
+  const handleCountryChange = async (country) => {
+    const data = await fetchData(country);
+    setData(data)
+    setCountry(country)
+  }
 
 
 }
