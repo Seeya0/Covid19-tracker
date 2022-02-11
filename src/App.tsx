@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { fetchData } from './api';
 import './App.css';
+import CountryPicker from './components/CountryPicker';
 import Header from './components/Header';
 
-function App() {
+const App = () => {
   const [data, setData] = useState<string | any>({});
   const [country, setCountry] = useState<string>('');
 
@@ -15,7 +16,7 @@ function App() {
     })();
   }, [])
 
-  const handleCountryChange = async (country: string) => {
+  const handleCountryChange = async (country) => {
     const data = await fetchData(country);
     setData(data)
     setCountry(country)
@@ -25,6 +26,7 @@ function App() {
   return (
     <div className="App">
       <Header />
+      <CountryPicker handleCountryChange={handleCountryChange} />
     </div>
   );
 }
